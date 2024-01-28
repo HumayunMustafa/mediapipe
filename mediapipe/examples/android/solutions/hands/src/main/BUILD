@@ -29,7 +29,7 @@ android_binary(
     deps = [
         "//mediapipe/framework/formats:landmark_java_proto_lite",
         "//mediapipe/java/com/google/mediapipe/solutioncore:camera_input",
-        "//mediapipe/java/com/google/mediapipe/solutioncore:mediapipe_jni_lib",
+        #        "//mediapipe/java/com/google/mediapipe/solutioncore:mediapipe_jni_lib",
         "//mediapipe/java/com/google/mediapipe/solutioncore:solution_rendering",
         "//mediapipe/java/com/google/mediapipe/solutioncore:video_input",
         "//mediapipe/java/com/google/mediapipe/solutions/hands",

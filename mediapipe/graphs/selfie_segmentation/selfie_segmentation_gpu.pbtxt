@@ -6,6 +6,12 @@ input_stream: "input_video"
 # Output image with rendered results. (GpuBuffer)
 output_stream: "output_video"
 
+node{
+    calculator:"ImageFrameToGpuBufferCalculator"
+    input_stream:"input_video"
+    output_stream:"input_video_gpu"
+}
+
 # Throttles the images flowing downstream for flow control. It passes through
 # the very first incoming image unaltered, and waits for downstream nodes
 # (calculators and subgraphs) in the graph to finish their tasks before it
@@ -18,7 +24,7 @@ output_stream: "output_video"
 # subsequent nodes are still busy processing previous inputs.
 node {
   calculator: "FlowLimiterCalculator"
-  input_stream: "input_video"
+  input_stream: "input_video_gpu"
   input_stream: "FINISHED:output_video"
   input_stream_info: {
     tag_index: "FINISHED"
@@ -43,7 +49,7 @@ node {
   output_stream: "IMAGE_GPU:output_video"
   node_options: {
     [type.googleapis.com/mediapipe.RecolorCalculatorOptions] {
-      color { r: 0 g: 0 b: 255 }
+      color { r: 0 g: 0 b: 0 }
       mask_channel: RED
       invert_mask: true
       adjust_with_luminance: false

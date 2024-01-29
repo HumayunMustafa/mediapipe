@@ -14,8 +14,14 @@
 
 package com.google.mediapipe.glutil;
 
+import android.annotation.SuppressLint;
+import android.graphics.Bitmap;
+import android.graphics.SurfaceTexture;
 import android.opengl.GLES20;
+import android.opengl.GLUtils;
 import android.opengl.Matrix;
+import android.util.Log;
+
 import java.nio.FloatBuffer;
 import java.util.HashMap;
 import java.util.Map;
@@ -115,6 +121,18 @@ public class TextureRenderer {
 
     GLES20.glFlush();
   }
+
+
+
+  public int[] rescaleBasedOnTextureSize(){
+    int[] maxTextureSize = new int[2];
+
+    GLES20.glGetIntegerv(GLES20.GL_MAX_TEXTURE_SIZE, maxTextureSize, 0);
+    GLES20.glGetIntegerv(GLES20.GL_MAX_TEXTURE_SIZE, maxTextureSize, 1);
+
+    return maxTextureSize;
+  }
+
 
   /**
    * Call this to delete the shader program.

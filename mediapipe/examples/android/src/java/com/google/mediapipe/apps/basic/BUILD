@@ -38,6 +38,13 @@ android_library(
     ],
 )
 
+# Expose the java source files for building mediapipe AAR.
+filegroup(
+    name = "java_src",
+    srcs = glob(["**/*.java"]),
+    visibility = ["//mediapipe:__subpackages__"],
+)
+
 # Manifest common across example apps.
 exports_files(
     srcs = ["AndroidManifest.xml"],
